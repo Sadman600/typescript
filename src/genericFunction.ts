@@ -16,18 +16,43 @@ const result4 = myFunction2<Info>({
   age: 30,
 });
 
-const myNewFun = <T>(params: T): T => {
+type MustType = {
+  wifeName: string;
+  age: number;
+  isAdult: boolean;
+};
+
+interface OtherInfo {
+  // wifeName: string;
+  // age: number;
+  isAdult: boolean;
+}
+// const otherInfo = {
+//   wifeName: "Kanti",
+//   age: 28,
+//   isAdult: true,
+// };
+
+//
+
+interface Data1 {
+  wifeName: string;
+  age: number;
+}
+
+const myNewFun = <T extends Data1>(params: T): T => {
   const myName = "Sadman";
   const newData = { ...params, myName };
   return newData;
 };
-interface OtherInfo {
+interface Data2 {
   wifeName: string;
   age: number;
+  isAdult: boolean;
 }
-const otherInfo = {
+const otherInfo: Data2 = {
   wifeName: "Kanti",
   age: 28,
+  isAdult: true,
 };
-
-const newInfo = myNewFun<OtherInfo>(otherInfo);
+const newInfo = myNewFun(otherInfo);
